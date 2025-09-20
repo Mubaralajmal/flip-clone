@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fastrack Smartwatches - Flipkart Clone</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    body { background-color: #e6e6e6; margin:0; display:flex; flex-direction:column; min-height:100vh; }
+    .container-fluid { flex:1; }
+    .navbar-brand { font-size: 1.25rem; }
+    .navbar-brand small { font-size: 0.75rem; }
+    .navbar-nav .nav-link { color: #333; font-weight: 500; }
+    .navbar-nav .btn-outline-primary { border-color: #2874f0; color: #2874f0; }
+    .navbar-nav .btn-outline-primary:hover { background-color: #2874f0; color: white; }
+    .dropdown-menu { min-width: 200px; }
+
+    /* Second navbar small text, single line */
+    .nav2 { border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; font-size: 0.85rem; white-space: nowrap; overflow-x: auto; }
+    .nav2 .nav-link { font-weight: 500; color: #333; padding: 0.5rem 0.75rem; }
+    .nav2 .nav-link:hover { color: #2874f0; }
+    .nav2 .bi-chevron-down { font-size: 0.6rem; }
+
+    .col { transition: transform 0.2s ease, box-shadow 0.2s ease; border: none; border-radius: 10px; }
+    .col:hover { box-shadow: 0 4px 8px rgba(0,0,0,0.459); }
+    .card { border: none; }
+    .card img { height: 200px; object-fit: contain; }
+    .price { color: #388e3c; font-weight: 600; }
+    .pagination { gap: 0.5rem; }
+    .pagination .page-item .page-link {
+      border: none; border-radius: 50%; width: 40px; height: 40px;
+      display: flex; align-items: center; justify-content: center;
+      color: #2874f0; background-color: white; font-weight: 500;
+    }
+    .pagination .page-item.active .page-link { background-color: #2874f0; color: white; }
+    .pagination .page-item .page-link:hover { background-color: #e6f0ff; }
+    .pagination .page-item.disabled .page-link { color: #ccc; }
+    footer { margin-top: 40px; }
+
+    .col-md-9 { background-color: white; padding: 10px; }
+    .col-md-3 { width: 100%; }
+    .navbar { padding-left: 1rem; padding-right: 1rem; }
+
+    @media (min-width: 992px) {
+      .col-md-9 { margin-left: 0; width: 75%; }
+      .col-md-3 { width: 20%; }
+    }
+    @media (max-width: 991px) {
+      .col-md-9 { width: 100%; margin-left: 0; }
+      .col-md-3 { width: 100%; margin-left: 0; margin-bottom: 1rem; }
+      .navbar .form-control { width: auto; }
+    }
+    .navbar-toggler {
+         margin-right: 620px;
+         margin-top: -40px;
+    }
+    .form-control {
+        margin-left: -10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Main Navbar -->
+  <nav class="navbar navbar-expand-lg bg-primary navbar-light shadow-sm sticky-top">
+    <div class="container-fluid">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <span class="ms-5 fw-bold text-white">Flipkart</span>
+        <small class="text-white ms-1">Explore <span class="text-warning">Plus</span></small>
+      </a>
+
+      <!-- Search Bar always visible -->
+      <form class="srch d-flex mx-auto w-50" role="search">
+        <input class="form-control me-1" type="search" placeholder="Search for products, brands and more" aria-label="Search">
+        <button class="btn btn-warning text-dark fw-bold" type="submit">Search</button>
+      </form>
+
+      <!-- Toggle button for right menu -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbarMenu" aria-controls="mainNavbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Collapsible Right Menu -->
+      <div class="collapse navbar-collapse" id="mainNavbarMenu">
+        <ul class="navbar-nav ms-auto align-items-center">
+          <li class="nav-item me-3"><button class="btn btn-outline-primary text-white">Login</button></li>
+          <li class="nav-item me-3"><a class="nav-link text-white" href="#">Become a Seller</a></li>
+          <li class="nav-item dropdown me-3">
+            <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown">More</a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="#">Notification Preferences</a></li>
+              <li><a class="dropdown-item" href="#">24x7 Customer Care</a></li>
+              <li><a class="dropdown-item" href="#">Advertise</a></li>
+              <li><a class="dropdown-item" href="#">Download App</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center text-white" href="#"><i class="bi bi-cart3"></i><span class="ms-1">Cart</span></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Second Navbar (always visible, scrollable in mobile) -->
+  <nav class="nav2 navbar navbar-expand bg-white navbar-light shadow-sm">
+    <div class="container-fluid justify-content-center">
+      <ul class="navbar-nav flex-row flex-nowrap mb-2 mb-lg-0">
+        <li class="nav-item mx-2"><a class="nav-link text-dark" href="#">Electronics <i class="bi bi-chevron-down"></i></a></li>
+        <li class="nav-item mx-2"><a class="nav-link text-dark" href="#">TVs & Appliances <i class="bi bi-chevron-down"></i></a></li>
+        <li class="nav-item mx-2"><a class="nav-link text-dark" href="#">Men <i class="bi bi-chevron-down"></i></a></li>
+        <li class="nav-item mx-2"><a class="nav-link text-dark" href="#">Women <i class="bi bi-chevron-down"></i></a></li>
+        <li class="nav-item mx-2"><a class="nav-link text-dark" href="#">Baby & Kids <i class="bi bi-chevron-down"></i></a></li>
+        <li class="nav-item mx-2"><a class="nav-link text-dark" href="#">Home & Furniture <i class="bi bi-chevron-down"></i></a></li>
+        <li class="nav-item mx-2"><a class="nav-link text-dark" href="#">Sports, Books & More <i class="bi bi-chevron-down"></i></a></li>
+        <li class="nav-item mx-2"><a class="nav-link text-dark" href="#">Flights</a></li>
+        <li class="nav-item mx-2"><a class="nav-link text-dark" href="#">Offer Zone</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container-fluid mt-4">
+    <div class="row">
+      <!-- Sidebar / Filter -->
+      <div class="col-md-1 mb-1">
+        <button class="btn btn-outline-primary d-lg-none mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#filterSidebar" aria-expanded="false" aria-controls="filterSidebar">Filters</button>
+        <div class="collapse d-lg-block" id="filterSidebar">
+          <div class="card shadow-sm">
+            <div class="card-header bg-white fw-bold">Filters</div>
+            <div class="card-body">
+              <h6 class="fw-semibold">Brand</h6>
+              <div class="form-check"><input class="form-check-input" type="checkbox" id="fastrack" checked><label class="form-check-label" for="fastrack">Fastrack</label></div>
+              <div class="form-check"><input class="form-check-input" type="checkbox" id="boat"><label class="form-check-label" for="boat">boAt</label></div>
+              <div class="form-check"><input class="form-check-input" type="checkbox" id="noise"><label class="form-check-label" for="noise">Noise</label></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Products -->
+      <div class="col-md-9">
+        <p style="font-size: x-small;">Explore a large collection of smartwatches combining style and functionality...</p>
+        <h4 class="mb-3">Smartwatches</h4>
+        <div class="container">
+          <div class="row row-cols-2 row-cols-lg-4 g-1" id="productGrid">
+            <!-- Page 1 -->
+            <div class="col page page-1">
+              <div class="card h-100">
+                <img src="prod1.webp" class="card-img-top" alt="Watch 1">
+                <div class="card-body"><h6 class="card-title">Fastrack Reflex 2.0</h6><p class="price">₹1,399</p><p class="text-warning mb-0">⭐⭐⭐⭐☆</p></div>
+              </div>
+            </div>
+            <div class="col page page-1">
+              <div class="card h-100">
+                <img src="prod2.jpg" class="card-img-top" alt="Watch 2">
+                <div class="card-body"><h6 class="card-title">boAt Storm</h6><p class="price">₹2,499</p><p class="text-warning mb-0">⭐⭐⭐⭐☆</p></div>
+              </div>
+            </div>
+            <div class="col page page-1">
+              <div class="card h-100">
+                <img src="prod3.webp" class="card-img-top" alt="Watch 3">
+                <div class="card-body"><h6 class="card-title">Noise ColorFit</h6><p class="price">₹1,799</p><p class="text-warning mb-0">⭐⭐⭐⭐☆</p></div>
+              </div>
+            </div>
+            <div class="col page page-1">
+              <div class="card h-100">
+                <img src="prod4.webp" class="card-img-top" alt="Watch 4">
+                <div class="card-body"><h6 class="card-title">Fastrack Reflex Beat</h6><p class="price">₹1,699</p><p class="text-warning mb-0">⭐⭐⭐⭐☆</p></div>
+              </div>
+            </div>
+
+            <!-- Page 2 -->
+            <div class="col page page-2 d-none">
+              <div class="card h-100">
+                <img src="prod5.webp" class="card-img-top" alt="Watch 5">
+                <div class="card-body"><h6 class="card-title">Fastrack Elite</h6><p class="price">₹2,799</p><p class="text-warning mb-0">⭐⭐⭐⭐☆</p></div>
+              </div>
+            </div>
+            <div class="col page page-2 d-none">
+              <div class="card h-100">
+                <img src="prod6.webp" class="card-img-top" alt="Watch 6">
+                <div class="card-body"><h6 class="card-title">Noise ColorFit Pulse</h6><p class="price">₹1,999</p><p class="text-warning mb-0">⭐⭐⭐⭐☆</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pagination -->
+        <nav class="mt-4">
+          <ul class="pagination justify-content-center">
+            <li class="page-item" id="prevBtn"><a class="page-link" href="#" onclick="changePage(-1)">&#10094;</a></li>
+            <li class="page-item active"><a class="page-link" href="#" onclick="goToPage(1)">1</a></li>
+            <li class="page-item"><a class="page-link" href="#" onclick="goToPage(2)">2</a></li>
+            <li class="page-item" id="nextBtn"><a class="page-link" href="#" onclick="changePage(1)">&#10095;</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-primary text-white text-center py-3">© 2025 Flipkart Clone. All rights reserved.</footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Pagination Script -->
+  <script>
+    let currentPage = 1;
+    const totalPages = 2;
+
+    function showPage(page) {
+      document.querySelectorAll('.page').forEach(el => el.classList.add('d-none'));
+      document.querySelectorAll('.page-' + page).forEach(el => el.classList.remove('d-none'));
+
+      document.querySelectorAll('.pagination .page-item').forEach(el => el.classList.remove('active'));
+      document.querySelector('.pagination .page-item:nth-child(' + (page + 1) + ')').classList.add('active');
+
+      document.getElementById('prevBtn').classList.toggle('disabled', page === 1);
+      document.getElementById('nextBtn').classList.toggle('disabled', page === totalPages);
+
+      currentPage = page;
+    }
+
+    function goToPage(page) { showPage(page); }
+    function changePage(delta) { let newPage = currentPage + delta; if (newPage >= 1 && newPage <= totalPages) showPage(newPage); }
+
+    showPage(currentPage);
+  </script>
+</body>
+</html>
